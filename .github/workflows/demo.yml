@@ -1,0 +1,18 @@
+name: Finance calculator demo
+on:
+  push:
+    branches: [main, develop, feature/add-operation]
+permissions:
+  contents: read
+jobs:
+  demonstrate:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          printf '1\n1500,50\nДоход\n2026-11-23\n2\n300,25\nРасход\n2026-11-23\n3\n4\n0\n' | python src/main.py | tee result.txt
+          grep -F 'Баланс: 1200.25' result.txt
+          printf '4\n0\n' | python src/main.py | grep -F 'Баланс: 1200.25'
