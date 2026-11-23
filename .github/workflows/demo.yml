@@ -1,7 +1,7 @@
 name: Finance calculator demo
 on:
   push:
-    branches: [feature/add-operation]
+    branches: [main, develop, feature/add-operation]
 permissions:
   contents: read
 jobs:
